@@ -171,7 +171,7 @@
     const firebaseConfig = {
       apiKey: "AIzaSyBkVA-8VeBzN0pr-PPfjZVeFaLiH1SQa4I",
       authDomain: "multipliers-9e619.firebaseapp.com",
-      databaseURL: "https://multipliers-9e619-default-rtdb.firebaseio.com", // כתובת מסד הנתונים שנוצר
+      databaseURL: "https://multipliers-9e619-default-rtdb.firebaseio.com/, // כתובת מסד הנתונים שנוצר
       projectId: "multipliers-9e619",
       storageBucket: "multipliers-9e619.firebasestorage.app",
       messagingSenderId: "53408782394",
@@ -238,7 +238,7 @@
       const promises = kids.map(kid => {
         return Promise.all([
           db.ref(`high_scores/${kid}`).once('value'),
-          db.ref(`history/${kid}`).queryToBack().limitToLast(10).once('value')
+          db.ref(`history/${kid}`).orderByKey().limitToLast(10).once('value')
         ]).then(([scoreSnap, historySnap]) => {
           const score = scoreSnap.val();
           const historyVal = historySnap.val();
